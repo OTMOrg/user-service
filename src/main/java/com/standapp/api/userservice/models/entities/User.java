@@ -77,7 +77,8 @@ public class User {
 
     //Why below annotaion? -> https://stackoverflow.com/a/4381360/4291698
     @Embeddable
-    class ContactDetails {
+    //Why static? -> https://stackoverflow.com/a/46911039/4291698
+    public static class ContactDetails {
         //Why below annotation? -> https://stackoverflow.com/a/15935216/4291698
         @ElementCollection(targetClass=String.class)
         private List<String> phoneNumbers;
@@ -85,7 +86,9 @@ public class User {
         @ElementCollection(targetClass=String.class)
         private List<String> emails;
 
-        public ContactDetails() {}
+        public ContactDetails() {
+
+        }
 
         public List<String> getPhoneNumbers() {
             return phoneNumbers;

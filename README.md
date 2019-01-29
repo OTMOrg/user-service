@@ -8,8 +8,8 @@ run with `mvn spring-boot:run`
 (link)[http://www.google.com]
 ---
 ###Todos:
-0. Ping api - App version, App name, App version code, DB check
-1. CRUD for User. 
-2.
+1. Ping api - App version, App name, App version code, DB check
+2. CRUD for User. 
 3.
 4.
+5.

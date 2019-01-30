@@ -20,13 +20,12 @@ class UserController {
 
     @PostMapping(value="/")
     public User createUser(@RequestBody User user) {
-        repository.save(user);
-        return user;
+        return repository.save(user);
     }
 
     @GetMapping(value="/{id}")
     public User findUserById(@PathVariable Long id) {
-        return repository.findById(id).get();
+        return repository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
     }
     
     

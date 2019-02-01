@@ -3,6 +3,8 @@ package com.standapp.api.userservice;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 import com.standapp.api.userservice.models.entities.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +20,7 @@ class UserController {
     @Autowired
     private UserRepository repository;
 
-    @PostMapping(value="/")
+    @PostMapping(value="")
     public User createUser(@RequestBody User user) {
         return repository.save(user);
     }
@@ -27,7 +29,10 @@ class UserController {
     public User findUserById(@PathVariable Long id) {
         return repository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
     }
-    
-    
+
+    @GetMapping(value="")
+    public List<User> getAllUsers() {
+        return repository.findAll();
+    }
 
 }

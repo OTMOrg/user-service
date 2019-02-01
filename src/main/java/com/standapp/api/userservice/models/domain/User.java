@@ -10,4 +10,13 @@ public class User {
     private String phoneNumber;
     private ContactDetails extraContactDetails;
 
+    public static User getUser(com.standapp.api.userservice.models.entities.User userEntity) {
+        User user = new User();
+        user.id = userEntity.getId();
+        user.email = userEntity.getEmail();
+        user.phoneNumber = userEntity.getPhoneNumber();
+        user.extraContactDetails = userEntity.getExtraContactDetails();
+        return user;
+    }
+
 }

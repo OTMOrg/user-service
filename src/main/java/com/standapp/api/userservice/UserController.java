@@ -42,22 +42,14 @@ class UserController {
         return RestResponse.ok(userService.getUserById(id));
     }
 
-    // @GetMapping(value="")
-    // public List<User> getAllUsers() {
-    //     return repository.findAll();
-    // }
+    @GetMapping(value="")
+    public RestResponse<List<UserDTO>> getAllUsers() {
+        return RestResponse.ok(userService.getAllUsers());
+    }
 
-    // @PutMapping(value="/{id}")
-    // public User putUser(@PathVariable("id") Long id, @RequestBody User newUser) {
-    //     return repository.findById(id)
-    //     .map(user -> {
-    //         user.setEmail(newUser.getEmail());
-    //         user.setPassword(newUser.getPassword());
-    //         user.setUsername(newUser.getUsername());
-    //         user.setPhoneNumber(newUser.getPhoneNumber());
-    //         user.setExtraContactDetails(newUser.getExtraContactDetails());
-    //         return repository.save(user);
-    //     }).get();
-    // }
+    @PutMapping(value="/{id}")
+    public RestResponse<UserDTO> putUser(@PathVariable("id") Long id, @RequestBody User user) {
+        return RestResponse.ok(userService.putUser(id, user));
+    }
 
 }

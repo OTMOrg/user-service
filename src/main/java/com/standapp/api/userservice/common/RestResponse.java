@@ -27,7 +27,7 @@ public class RestResponse<T> {
     }
 
     public static <T> RestResponse<T> ok(T data) {
-        return new RestResponse(true, null, data);
+        return new RestResponse<T>(true, null, data);
     }
 
 }

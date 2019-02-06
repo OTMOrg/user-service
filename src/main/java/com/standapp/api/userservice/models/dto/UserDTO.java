@@ -1,5 +1,8 @@
 package com.standapp.api.userservice.models.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.standapp.api.userservice.models.entities.User;
 import com.standapp.api.userservice.models.entities.User.ContactDetails;
 
@@ -10,15 +13,6 @@ public class UserDTO {
     private String email;
     private String phoneNumber;
     private ContactDetails extraContactDetails;
-
-    public static UserDTO getUser(User user) {
-        UserDTO userDTO = new UserDTO();
-        userDTO.id = user.getId();
-        userDTO.email = user.getEmail();
-        userDTO.phoneNumber = user.getPhoneNumber();
-        userDTO.extraContactDetails = user.getExtraContactDetails();
-        return userDTO;
-    }
 
     public Long getId() {
         return this.id;
@@ -59,6 +53,25 @@ public class UserDTO {
     public void setExtraContactDetails(ContactDetails extraContactDetails) {
         this.extraContactDetails = extraContactDetails;
     }
+
+    public static UserDTO getUser(User user) {
+        UserDTO userDTO = new UserDTO();
+        userDTO.id = user.getId();
+        userDTO.email = user.getEmail();
+        userDTO.username = user.getUsername();
+        userDTO.phoneNumber = user.getPhoneNumber();
+        userDTO.extraContactDetails = user.getExtraContactDetails();
+        return userDTO;
+    }
+
+	public static List<UserDTO> getUsers(List<User> users) {
+        int size = users.size();
+        List<UserDTO> userDTOs = new ArrayList<UserDTO>(size);
+        for (int i = 0; i < size; i++) {
+            userDTOs.add(getUser(users.get(i)));
+        }
+		return userDTOs;
+	}
     
 
 }

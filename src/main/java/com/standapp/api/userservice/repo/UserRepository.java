@@ -1,8 +1,8 @@
-package com.standapp.api.userservice;
+package com.standapp.api.userservice.repo;
 
 import com.standapp.api.userservice.models.entities.User;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 }

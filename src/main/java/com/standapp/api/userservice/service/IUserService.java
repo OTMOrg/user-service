@@ -15,4 +15,6 @@ public interface IUserService {
 
     UserDTO putUser(Long id, User user);
 
+	String deleteUser(Long id);
+
 }

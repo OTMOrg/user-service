@@ -35,9 +35,8 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public UserDTO putUser(Long id,User newUser) {
-        User updatedUser = repository.findById(id)
-        .map(user -> {
+    public UserDTO putUser(Long id, User newUser) {
+        User updatedUser = repository.findById(id).map(user -> {
             user.setEmail(newUser.getEmail());
             user.setPassword(newUser.getPassword());
             user.setUsername(newUser.getUsername());
@@ -46,6 +45,22 @@ public class UserService implements IUserService {
             return repository.save(user);
         }).get();
         return UserDTO.getUser(updatedUser);
+    }
+
+    @Override
+    public String deleteUser(Long id) {
+        //Ask rohan if I should use the commented code, shouldn't I tell user if the entry he is trying to delete does not exist?
+        // if (repository.existsById(id)) {
+        // repository.deleteById(id);
+        // if (!repository.existsById(id)) {
+        // return "User with id: " + id + "deleted";
+        // } else {
+        // //Some issue while deleting user, maybe throw an error status code
+        // }
+        // }
+        // throw new UserNotFoundException(id);
+        repository.deleteById(id);
+        return "User with id: " + id + "deleted";
     }
 
 }

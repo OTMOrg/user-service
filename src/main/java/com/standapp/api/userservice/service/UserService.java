@@ -60,7 +60,7 @@ public class UserService implements IUserService {
         // }
         // throw new UserNotFoundException(id);
         repository.deleteById(id);
-        return "User with id: " + id + "deleted";
+        return "User with id: " + id + " deleted";
     }
 
 }

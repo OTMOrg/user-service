@@ -1,23 +1,29 @@
-###Standapp - user service
+# Standapp - user service
+
 ---
-### Build
+
+## Build
+
 build with  `mvn clean install`
 run with `mvn spring-boot:run`
 
-###Postman Link
-(link)[http://www.google.com]
----
+### Postman Link
 
-###Method Naming convention
- * Post methods to be prefixed with post 
- * Get methods to be prefixed with get
- * Put methods to be prefixed with put
- * Delete methods to be prefixed with delete
- * This terminology to be used throughout the service
+[[link](http://www.google.com)]
 
-###Todos:
+### Method Naming convention
+
+ *Post methods to be prefixed with post 
+ *Get methods to be prefixed with get
+ *Put methods to be prefixed with put
+ *Delete methods to be prefixed with delete
+ *This terminology to be used throughout the service
+
+### Todos
+
 1. Ping api - App version, App name, App version code, DB check
-2. CRUD for User. 
-3.
-4.
-5.
+2. CRUD for User.
+3. PATCH, HEAD and OPTION call implemtation
+4. End to end test
+5. Deploy locally to MySQL
+6. Add spring security

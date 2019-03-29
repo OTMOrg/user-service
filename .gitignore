@@ -16,6 +16,9 @@
 *.iml
 *.ipr
 
+### VS CODE ###
+/.vscode/
+
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/

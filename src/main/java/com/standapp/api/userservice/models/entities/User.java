@@ -75,6 +75,7 @@ public class User {
         this.extraContactDetails = extraContactDetails;
     }
 
+    //TODO contact details to be an entity having type value and verified. Have a one to many mapping of user to contact details, one to many annotation fetch type (eager, lazy)
     //Why below annotaion? -> https://stackoverflow.com/a/4381360/4291698
     @Embeddable
     //Why static? -> https://stackoverflow.com/a/46911039/4291698

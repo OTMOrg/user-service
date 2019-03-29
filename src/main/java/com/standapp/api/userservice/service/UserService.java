@@ -47,6 +47,7 @@ public class UserService implements IUserService {
         return UserDTO.getUser(updatedUser);
     }
 
+    //TODO do a soft delete
     @Override
     public String deleteUser(Long id) {
         //Ask rohan if I should use the commented code, shouldn't I tell user if the entry he is trying to delete does not exist?

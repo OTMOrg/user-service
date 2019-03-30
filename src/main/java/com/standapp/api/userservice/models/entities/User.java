@@ -1,29 +1,49 @@
 package com.standapp.api.userservice.models.entities;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Embeddable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
+@Table(name = "User")
 public class User {
 
-    private @Id @GeneratedValue Long id;
+    @Column(name = "ID", nullable = false, length = 5)
+    @Id 
+    @GeneratedValue(strategy = GenerationType.AUTO) 
+    private Long id;
+
+    @Column(name = "Username")
     private String username;
-    private String email;
+    
+    @Column(name = "Password")
     private String password;
-    private String phoneNumber;
-    private ContactDetails extraContactDetails;
+    
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private Set<ContactDetails> contactDetails = new HashSet<>();
+
+    public Set<ContactDetails> getContactDetails() {
+        return this.contactDetails;
+    }
+
+    public void setContactDetails(Set<ContactDetails> contactDetails) {
+        this.contactDetails = contactDetails;
+    }
 
     public User() {
     }
 
-    public User(String email, String password) {
-        this.email = email;
+    public User(String username, String password) {
+        this.username = username;
         this.password = password;
     }
 
@@ -43,14 +63,6 @@ public class User {
         this.username = username;
     }
 
-    public String getEmail() {
-        return this.email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getPassword() {
         return this.password;
     }
@@ -58,69 +70,4 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public String getPhoneNumber() {
-        return this.phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public ContactDetails getExtraContactDetails() {
-        return this.extraContactDetails;
-    }
-
-    public void setExtraContactDetails(ContactDetails extraContactDetails) {
-        this.extraContactDetails = extraContactDetails;
-    }
-
-    //TODO contact details to be an entity having type value and verified. Have a one to many mapping of user to contact details, one to many annotation fetch type (eager, lazy)
-    //Why below annotaion? -> https://stackoverflow.com/a/4381360/4291698
-    @Embeddable
-    //Why static? -> https://stackoverflow.com/a/46911039/4291698
-    public static class ContactDetails {
-        //Why below annotation? -> https://stackoverflow.com/a/15935216/4291698
-        @ElementCollection(targetClass=String.class)
-        private List<String> phoneNumbers;
-        
-        @ElementCollection(targetClass=String.class)
-        private List<String> emails;
-
-        public ContactDetails() {
-
-        }
-
-        public List<String> getPhoneNumbers() {
-            return phoneNumbers;
-        }
-        
-        public List<String> getEmails() {
-            return emails;
-        }
-
-        public void setPhoneNumbers(List<String> phoneNumbers) {
-            this.phoneNumbers = phoneNumbers;
-        }
-
-        public void setEmails(List<String> emails) {
-            this.emails = emails;
-        }
-
-        public void addPhoneNumber(String phoneNumber) {
-            if (phoneNumbers == null) {
-                phoneNumbers = new ArrayList<>();
-            }
-            phoneNumbers.add(phoneNumber);
-        }
-
-        public void addEmail(String email) {
-            if (emails == null) {
-                emails = new ArrayList<>();
-            }
-            emails.add(email);
-        }
-
-    }
-
 }

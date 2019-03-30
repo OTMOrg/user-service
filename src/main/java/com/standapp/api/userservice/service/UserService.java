@@ -37,11 +37,11 @@ public class UserService implements IUserService {
     @Override
     public UserDTO putUser(Long id, User newUser) {
         User updatedUser = repository.findById(id).map(user -> {
-            user.setEmail(newUser.getEmail());
+            // user.setEmail(newUser.getEmail());
             user.setPassword(newUser.getPassword());
             user.setUsername(newUser.getUsername());
-            user.setPhoneNumber(newUser.getPhoneNumber());
-            user.setExtraContactDetails(newUser.getExtraContactDetails());
+            // user.setPhoneNumber(newUser.getPhoneNumber());
+            // user.setExtraContactDetails(newUser.getExtraContactDetails());
             return repository.save(user);
         }).get();
         return UserDTO.getUser(updatedUser);

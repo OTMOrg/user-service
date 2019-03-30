@@ -49,7 +49,7 @@ public class UserDTO {
     public static UserDTO getUser(User user) {
         UserDTO userDTO = new UserDTO();
         userDTO.id = user.getId();
-        // userDTO.email = user.getEmail();
+        userDTO.email = user.getEmail();
         userDTO.username = user.getUsername();
         // userDTO.phoneNumber = user.getPhoneNumber();
         // userDTO.extraContactDetails = user.getExtraContactDetails();

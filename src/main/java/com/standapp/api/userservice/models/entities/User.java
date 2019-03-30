@@ -26,6 +26,7 @@ public class User {
     private String username;
     
     @Column(name = "Password")
+    @NotBlank(message = "Password cannot be empty")
     private String password;
     
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
@@ -69,5 +70,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getEmail() {
+        for (ContactDetails c : contactDetails) {
+            if(ContactDetails.ContactType.EMAIL.equals(c.getType())) {
+                return c.getValue();
+            }
+        }
+        return null;
     }
 }

@@ -28,13 +28,13 @@ public class ContactDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-
+    @Column(name = "Type", nullable = false)
     private ContactType type;
     
-    
+    @Column(name = "Value", nullable = false)
     private String value;
     
-    
+    @Column(name = "Verified")
     private boolean verified;
 
     @ManyToOne(fetch = FetchType.LAZY)

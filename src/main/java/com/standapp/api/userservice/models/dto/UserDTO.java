@@ -2,7 +2,9 @@ package com.standapp.api.userservice.models.dto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
+import com.standapp.api.userservice.models.entities.ContactDetails;
 import com.standapp.api.userservice.models.entities.User;
 
 
@@ -10,9 +12,15 @@ public class UserDTO {
 
     private Long id;
     private String username;
-    private String email;
-    private String phoneNumber;
+    private Set<ContactDetails> contactDetails;
 
+    public Set<ContactDetails> getContactDetails() {
+        return this.contactDetails;
+    }
+
+    public void setContactDetails(Set<ContactDetails> contactDetails) {
+        this.contactDetails = contactDetails;
+    }
 
     public Long getId() {
         return this.id;
@@ -30,29 +38,11 @@ public class UserDTO {
         this.username = username;
     }
 
-    public String getEmail() {
-        return this.email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhoneNumber() {
-        return this.phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
     public static UserDTO getUser(User user) {
         UserDTO userDTO = new UserDTO();
         userDTO.id = user.getId();
-        userDTO.email = user.getEmail();
+        userDTO.contactDetails = user.getContactDetails();
         userDTO.username = user.getUsername();
-        // userDTO.phoneNumber = user.getPhoneNumber();
-        // userDTO.extraContactDetails = user.getExtraContactDetails();
         return userDTO;
     }
 

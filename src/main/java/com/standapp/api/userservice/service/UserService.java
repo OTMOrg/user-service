@@ -4,7 +4,9 @@ import java.util.List;
 
 import com.standapp.api.userservice.UserNotFoundException;
 import com.standapp.api.userservice.models.dto.UserDTO;
+import com.standapp.api.userservice.models.entities.ContactDetails;
 import com.standapp.api.userservice.models.entities.User;
+import com.standapp.api.userservice.repo.ContactDetailRepository;
 import com.standapp.api.userservice.repo.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,35 +16,41 @@ import org.springframework.stereotype.Service;
 public class UserService implements IUserService {
 
     @Autowired
-    private UserRepository repository;
+    private UserRepository userRepository;
+
+    @Autowired
+    private ContactDetailRepository contactsRepository;
 
     @Override
     public UserDTO postUser(User user) {
-        user = repository.save(user);
+        user = userRepository.save(user);
+        for (ContactDetails c : user.getContactDetails()) {
+            c.setUser(user);
+            ContactDetails cd = contactsRepository.save(c);
+            c.setId(cd.getId());
+        }
         return UserDTO.getUser(user);
     }
 
     @Override
     public UserDTO getUserById(Long id) {
-        User user = repository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
+        User user = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
         return UserDTO.getUser(user);
     }
 
     @Override
     public List<UserDTO> getAllUsers() {
-        List<User> users = repository.findAll();
+        List<User> users = userRepository.findAll();
         return UserDTO.getUsers(users);
     }
 
     @Override
     public UserDTO putUser(Long id, User newUser) {
-        User updatedUser = repository.findById(id).map(user -> {
-            // user.setEmail(newUser.getEmail());
+        User updatedUser = userRepository.findById(id).map(user -> {
             user.setPassword(newUser.getPassword());
             user.setUsername(newUser.getUsername());
-            // user.setPhoneNumber(newUser.getPhoneNumber());
-            // user.setExtraContactDetails(newUser.getExtraContactDetails());
-            return repository.save(user);
+            user.setContactDetails(newUser.getContactDetails());
+            return userRepository.save(user);
         }).get();
         return UserDTO.getUser(updatedUser);
     }
@@ -60,7 +68,7 @@ public class UserService implements IUserService {
         // }
         // }
         // throw new UserNotFoundException(id);
-        repository.deleteById(id);
+        userRepository.deleteById(id);
         return "User with id: " + id + " deleted";
     }
 

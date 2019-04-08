@@ -29,3 +29,4 @@ run with `mvn spring-boot:run`
 6. Add spring security.
 7. Do a soft delete why deleting a user.
 8. Have a list of contact detail per user where each contact detail has type, value and verified flag.
+9. Convert user DTO to login DTO and user response DTO

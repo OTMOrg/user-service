@@ -29,17 +29,6 @@ public class User {
     @NotBlank(message = "Password cannot be empty")
     private String password;
     
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private Set<ContactDetails> contactDetails = new HashSet<>();
-
-    public Set<ContactDetails> getContactDetails() {
-        return this.contactDetails;
-    }
-
-    public void setContactDetails(Set<ContactDetails> contactDetails) {
-        this.contactDetails = contactDetails;
-    }
-
     public User() {
     }
 

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import com.standapp.api.userservice.models.entities.ContactDetails;
 import com.standapp.api.userservice.models.entities.User;
 
 
@@ -12,15 +11,6 @@ public class UserDTO {
 
     private Long id;
     private String username;
-    private Set<ContactDetails> contactDetails;
-
-    public Set<ContactDetails> getContactDetails() {
-        return this.contactDetails;
-    }
-
-    public void setContactDetails(Set<ContactDetails> contactDetails) {
-        this.contactDetails = contactDetails;
-    }
 
     public Long getId() {
         return this.id;
@@ -41,7 +31,6 @@ public class UserDTO {
     public static UserDTO getUser(User user) {
         UserDTO userDTO = new UserDTO();
         userDTO.id = user.getId();
-        userDTO.contactDetails = user.getContactDetails();
         userDTO.username = user.getUsername();
         return userDTO;
     }

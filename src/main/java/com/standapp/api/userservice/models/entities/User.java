@@ -1,16 +1,12 @@
 package com.standapp.api.userservice.models.entities;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
@@ -22,12 +18,28 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO) 
     private Long id;
 
-    @Column(name = "Username")
+    @Column(name = "Username", nullable = false)
     private String username;
     
-    @Column(name = "Password")
+    @Column(name = "Password", nullable = false)
     @NotBlank(message = "Password cannot be empty")
     private String password;
+
+    @Column(name = "CreatedOn")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    private Date createdOn = new Date();
+
+    @Column(name = "UpdatedOn")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    private Date updatedOn = new Date();
+
+    @Column(name = "Status")
+//    @Enumerated =? todo
+    private Status status = Status.ACTIVE;
+
+    public enum Status {
+        ACTIVE, ENABLED, DELETED, BANNED
+    }
     
     public User() {
     }
@@ -59,5 +71,17 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Date getCreatedOn() {
+        return createdOn;
+    }
+
+    public Date getUpdatedOn() {
+        return updatedOn;
+    }
+
+    public Status getStatus() {
+        return status;
     }
 }

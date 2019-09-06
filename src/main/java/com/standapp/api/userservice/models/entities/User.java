@@ -40,7 +40,8 @@ public class User {
     public enum Status {
         ACTIVE, ENABLED, DELETED, BANNED
     }
-    
+
+    //Empty constructor is needed by spring to create a new user instance
     public User() {
     }
 

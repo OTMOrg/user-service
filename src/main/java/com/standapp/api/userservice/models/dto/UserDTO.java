@@ -16,6 +16,7 @@ public class UserDTO {
     private String updatedOn;
     private String status;
 
+    //Getters and setters are needed for serialization deserialization
     public Long getId() {
         return this.id;
     }

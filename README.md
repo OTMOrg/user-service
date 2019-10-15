@@ -27,6 +27,6 @@ run with `mvn spring-boot:run`
 4. End to end test using REST assured.
 5. Deploy locally to MySQL.
 6. Add spring security.
-7. Do a soft delete why deleting a user.
+7. Do a soft delete while deleting a user.
 8. Have a list of contact detail per user where each contact detail has type, value and verified flag.
 9. Convert user DTO to login DTO and user response DTO

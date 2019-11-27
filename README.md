@@ -21,12 +21,13 @@ run with `mvn spring-boot:run`
 
 ### Todos
 
-1. Ping api - App version, App name, App version code, DB check.
-2. CRUD for User.
-3. PATCH, HEAD and OPTION call implemtation.
-4. End to end test using REST assured.
-5. Deploy locally to MySQL.
-6. Add spring security.
-7. Do a soft delete while deleting a user.
-8. Have a list of contact detail per user where each contact detail has type, value and verified flag.
-9. Convert user DTO to login DTO and user response DTO
+- [ ] Ping api - App version, App name, App version code, DB check.
+- [ ] CRUD for User.
+- [ ] PATCH, HEAD and OPTION call implemtation.
+- [ ] End to end test using REST assured.
+- [ ] Deploy locally to MySQL.
+- [ ] Add spring security.
+- [ ] Do a soft delete while deleting a user.
+- [ ] Have a list of contact detail per user where each contact detail has type, value and verified flag.
+- [ ] Convert user DTO to login DTO and user response DTO
+- [ ] Use slug instead of auto increment user id, while creating user

@@ -4,9 +4,7 @@ import java.util.List;
 
 import com.standapp.api.userservice.UserNotFoundException;
 import com.standapp.api.userservice.models.dto.UserDTO;
-import com.standapp.api.userservice.models.entities.ContactDetails;
 import com.standapp.api.userservice.models.entities.User;
-import com.standapp.api.userservice.repo.ContactDetailRepository;
 import com.standapp.api.userservice.repo.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,17 +16,9 @@ public class UserService implements IUserService {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private ContactDetailRepository contactsRepository;
-
     @Override
     public UserDTO postUser(User user) {
         user = userRepository.save(user);
-        for (ContactDetails c : user.getContactDetails()) {
-            c.setUser(user);
-            ContactDetails cd = contactsRepository.save(c);
-            c.setId(cd.getId());
-        }
         return UserDTO.getUser(user);
     }
 
@@ -49,7 +39,6 @@ public class UserService implements IUserService {
         User updatedUser = userRepository.findById(id).map(user -> {
             user.setPassword(newUser.getPassword());
             user.setUsername(newUser.getUsername());
-            user.setContactDetails(newUser.getContactDetails());
             return userRepository.save(user);
         }).get();
         return UserDTO.getUser(updatedUser);

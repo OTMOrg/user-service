@@ -1,7 +1,6 @@
 package com.standapp.api.userservice;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -11,15 +10,9 @@ import com.standapp.api.userservice.models.entities.User;
 import com.standapp.api.userservice.service.IUserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
 
 /**
- * Post methods to be prefixed with post 
+ * Post methods to be prefixed with post
  * Get methods to be prefixed with get
  * Put methods to be prefixed with put
  * Delete methods to be prefixed with delete
@@ -27,33 +20,39 @@ import org.springframework.web.bind.annotation.PutMapping;
  */
 
 @RestController
-@RequestMapping(value="/user")
+@RequestMapping(value = "/user")
 class UserController {
 
     @Autowired
     private IUserService userService;
 
-    @PostMapping(value="")
+    //    @PostMapping(value="")
+    @RequestMapping(method = {RequestMethod.POST, RequestMethod.HEAD}, value = "")
     public RestResponse<UserDTO> postUser(@RequestBody User user) {
         return RestResponse.ok(userService.postUser(user));
     }
 
-    @GetMapping(value="/{id}")
+    //    @GetMapping(value="/{id}")
+    @RequestMapping(method = {RequestMethod.GET, RequestMethod.HEAD}, value = "/{id}")
     public RestResponse<UserDTO> getUserById(@PathVariable Long id) {
         return RestResponse.ok(userService.getUserById(id));
     }
 
-    @GetMapping(value="")
+    //    @GetMapping(value="")
+    @RequestMapping(method = {RequestMethod.GET, RequestMethod.HEAD}, value = "")
     public RestResponse<List<UserDTO>> getAllUsers() {
         return RestResponse.ok(userService.getAllUsers());
     }
 
-    @PutMapping(value="/{id}")
+    //    @PutMapping(value = "/{id}")
+    @RequestMapping(method = {RequestMethod.PUT, RequestMethod.HEAD}, value = "/{id}")
     public RestResponse<UserDTO> putUser(@PathVariable("id") Long id, @RequestBody User user) {
         return RestResponse.ok(userService.putUser(id, user));
     }
 
-    @DeleteMapping(value="/{id}")
+    // TODO: 2019-10-15 Handle case where we are trying to delete an already existing user
+    //    @DeleteMapping(value = "/{id}")
+    @RequestMapping(method = {RequestMethod.DELETE, RequestMethod.HEAD}, value = "/{id}")
     public RestResponse<String> deleteUser(@PathVariable("id") Long id) {
         return RestResponse.ok(userService.deleteUser(id));
     }

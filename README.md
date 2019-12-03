@@ -22,7 +22,7 @@ run with `mvn spring-boot:run`
 ### Todos
 
 - [ ] Ping api - App version, App name, App version code, DB check.
-- [ ] CRUD for User.
+- [x] CRUD for User.
 - [ ] PATCH, HEAD and OPTION call implemtation.
 - [ ] End to end test using REST assured.
 - [ ] Deploy locally to MySQL.

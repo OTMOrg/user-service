@@ -31,3 +31,5 @@ run with `mvn spring-boot:run`
 - [ ] Have a list of contact detail per user where each contact detail has type, value and verified flag.
 - [ ] Convert user DTO to login DTO and user response DTO
 - [ ] Use slug instead of auto increment user id, while creating user
+- [ ] Show user contact info in response of get user
+- [ ] Provide HATEOAS kind of contact info url in get user response

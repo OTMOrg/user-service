@@ -13,11 +13,11 @@ run with `mvn spring-boot:run`
 
 ### Method Naming convention
 
- *Post methods to be prefixed with post
- *Get methods to be prefixed with get
- *Put methods to be prefixed with put
- *Delete methods to be prefixed with delete
- *This terminology to be used throughout the service
+* Post methods to be prefixed with post
+* Get methods to be prefixed with get
+* Put methods to be prefixed with put
+* Delete methods to be prefixed with delete
+* This terminology to be used throughout the service
 
 ### Todos
 
@@ -33,3 +33,4 @@ run with `mvn spring-boot:run`
 - [ ] Use slug instead of auto increment user id, while creating user
 - [ ] Show user contact info in response of get user
 - [ ] Provide HATEOAS kind of contact info url in get user response
+- [ ] Store passwords encrypted form instead of the actual password

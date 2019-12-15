@@ -34,3 +34,4 @@ run with `mvn spring-boot:run`
 - [ ] Show user contact info in response of get user
 - [ ] Provide HATEOAS kind of contact info url in get user response
 - [ ] Store passwords encrypted form instead of the actual password
+- [ ] Store contact info in its separate table (one to many mapping between user and contact info)

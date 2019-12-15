@@ -4,6 +4,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -15,7 +16,7 @@ public class User {
 
     @Column(name = "ID", nullable = false, length = 5)
     @Id 
-    @GeneratedValue(strategy = GenerationType.AUTO) 
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "Username", nullable = false)
@@ -32,6 +33,9 @@ public class User {
     @Column(name = "UpdatedOn")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private Date updatedOn = new Date();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+    private Set<ContactInfo> contactInfo = new HashSet<>();
 
     @Column(name = "Status")
 //    @Enumerated =? todo
@@ -84,5 +88,13 @@ public class User {
 
     public Status getStatus() {
         return status;
+    }
+
+    public Set<ContactInfo> getContactInfo() {
+        return contactInfo;
+    }
+
+    public void setContactInfo(Set<ContactInfo> contactInfo) {
+        this.contactInfo = contactInfo;
     }
 }
